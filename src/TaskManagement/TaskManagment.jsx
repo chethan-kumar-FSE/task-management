@@ -1,12 +1,15 @@
-import { ConfirmationPopUp } from "../UI/ConfirmationPop";
-import CustomModal from "../UI/CustomModal";
 import FilterList from "./components/FilterList/FilterList";
-import TaskCreateForm from "./components/TaskCreateForm/TaskCreateForm";
 import { TasksList } from "./components/TasksList/TasksList";
 import ToggleView from "./components/ToggleView/ToggleView";
 import { useTasksListing } from "./hooks/useTasksListing";
 import { ThemeToggler } from "../components/ThemeToggler";
 import { TasksCount } from "./components/TasksCount/TasksCount";
+
+import { lazy, Suspense } from "react";
+
+const TaskCreateForm = lazy(() => import("./components/TaskCreateForm/TaskCreateForm"));
+const ConfirmationPopUp = lazy(() => import("../UI/ConfirmationPop"));
+const CustomModal = lazy(() => import("../UI/CustomModal"));
 
 export const TaskManagement = () => {
   const {
@@ -88,13 +91,21 @@ export const TaskManagement = () => {
         </div>
       </main>
 
-      <CustomModal isOpen={isFormModalOpen} onClose={closeModal} title={isEdit ? "Edit Task" : "Create Task"}>
-        <TaskCreateForm taskId={taskId} isEdit={isEdit} setCurrentTasks={setCurrentTasks} onClose={closeModal} />
-      </CustomModal>
+      {isFormModalOpen && (
+        <Suspense fallback={<div>Loading...</div>}>
+          <CustomModal isOpen={isFormModalOpen} onClose={closeModal} title={isEdit ? "Edit Task" : "Create Task"}>
+            <TaskCreateForm taskId={taskId} isEdit={isEdit} setCurrentTasks={setCurrentTasks} onClose={closeModal} />
+          </CustomModal>
+        </Suspense>
+      )}
 
-      <CustomModal isOpen={isDeleteModalOpen} onClose={handleCancel} title="Confirm Deletion">
-        <ConfirmationPopUp handleConfirm={handleConfirm} handleCancel={handleCancel} confirmationText={"Are you sure you want to delete ?"} />
-      </CustomModal>
+      {isDeleteModalOpen && (
+        <Suspense fallback={<div>Loading...</div>}>
+          <CustomModal isOpen={isDeleteModalOpen} onClose={handleCancel} title="Confirm Deletion">
+            <ConfirmationPopUp handleConfirm={handleConfirm} handleCancel={handleCancel} confirmationText="Are you sure you want to delete ?" />
+          </CustomModal>
+        </Suspense>
+      )}
     </div>
   );
 };
