@@ -94,7 +94,7 @@ This app demonstrates real-world frontend engineering concepts like **storage ma
 
 ## 🚀 Live Demo
 
-🔗 [https://your-live-app-url.com](https://task-app-dev.netlify.app)
+🔗 https://task-app-dev.netlify.app
 
 
 ## Run Locally
