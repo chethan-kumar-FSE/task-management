@@ -6,6 +6,7 @@ import { ThemeToggler } from "../components/ThemeToggler";
 import { TasksCount } from "./components/TasksCount/TasksCount";
 
 import { lazy, Suspense } from "react";
+import { Spinner } from "../UI/Spinner";
 
 const TaskCreateForm = lazy(() => import("./components/TaskCreateForm/TaskCreateForm"));
 const ConfirmationPopUp = lazy(() => import("../UI/ConfirmationPop"));
@@ -92,7 +93,7 @@ export const TaskManagement = () => {
       </main>
 
       {isFormModalOpen && (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Spinner />}>
           <CustomModal isOpen={isFormModalOpen} onClose={closeModal} title={isEdit ? "Edit Task" : "Create Task"}>
             <TaskCreateForm taskId={taskId} isEdit={isEdit} setCurrentTasks={setCurrentTasks} onClose={closeModal} />
           </CustomModal>
@@ -100,7 +101,7 @@ export const TaskManagement = () => {
       )}
 
       {isDeleteModalOpen && (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Spinner />}>
           <CustomModal isOpen={isDeleteModalOpen} onClose={handleCancel} title="Confirm Deletion">
             <ConfirmationPopUp handleConfirm={handleConfirm} handleCancel={handleCancel} confirmationText="Are you sure you want to delete ?" />
           </CustomModal>
