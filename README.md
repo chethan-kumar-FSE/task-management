@@ -26,7 +26,7 @@ A scalable React task manager with accessibility-first design, optimized renderi
 ### ⚠️ Form Validation
 
 <p align="center">
-  <img src="./screenshots/create-task.png" width="60%" />
+  <img src="./screenshots/form-validation.png" width="60%" />
 </p>
 
 ---
