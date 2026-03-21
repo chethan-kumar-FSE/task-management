@@ -1,11 +1,12 @@
-# task-management
+# Task Management Application
 
-A scalable React task manager with accessibility-first design, optimized rendering, and dynamic filtering.
+A modern, responsive, and feature-rich **Task Management Application** built using **React** and **Tailwind CSS**.  
+
+This app demonstrates real-world frontend engineering concepts like **storage management, filtering, UI/UX design, dark mode, and scalable architecture**.
 
 
 ## 📸 Screenshots
 
----
 
 ### 🏠 Initial Dashboard
 
@@ -13,15 +14,12 @@ A scalable React task manager with accessibility-first design, optimized renderi
   <img src="./screenshots/initialpage.png" width="80%" />
 </p>
 
----
-
 ### ➕ Create Task
 
 <p align="center">
   <img src="./screenshots/create-task.png" width="60%" />
 </p>
 
----
 
 ### ⚠️ Form Validation
 
@@ -29,7 +27,6 @@ A scalable React task manager with accessibility-first design, optimized renderi
   <img src="./screenshots/form-validation.png" width="60%" />
 </p>
 
----
 
 ### ✏️ Edit Task
 
@@ -37,7 +34,6 @@ A scalable React task manager with accessibility-first design, optimized renderi
   <img src="./screenshots/edit-task.png" width="60%" />
 </p>
 
----
 
 ### 🗑️ Delete Confirmation
 
@@ -53,7 +49,6 @@ A scalable React task manager with accessibility-first design, optimized renderi
   <img src="./screenshots/grid-view.png" width="80%" />
 </p>
 
----
 
 ### 📋 List View
 
@@ -61,7 +56,6 @@ A scalable React task manager with accessibility-first design, optimized renderi
   <img src="./screenshots/task-listing.png" width="80%" />
 </p>
 
----
 
 ### 🔍 Search Functionality
 
@@ -69,10 +63,57 @@ A scalable React task manager with accessibility-first design, optimized renderi
   <img src="./screenshots/search-list.png" width="80%" />
 </p>
 
----
 
 ### ☀️ Light Mode
 
 <p align="center">
   <img src="./screenshots/light-mode.png" width="80%" />
 </p>
+
+
+## 🚀 Live Features
+
+- ✅ Create, Edit, Delete Tasks  
+- 📊 Task Dashboard (Total / Pending / Completed)  
+- 🔍 Real-time Search  
+- 🎯 Filter by Status & Priority  
+- 🌓 Dark Mode / Light Mode (persisted via localStorage)  
+- 🗂️ Card View & List View toggle  
+- ⚠️ Form validation with error states  
+- 🧠 Clean and scalable component structure
+  
+
+## Tech Stack
+
+**Client Side** 
+- ⚛️ React (Hooks + Functional Components)
+- 🎨 Tailwind CSS
+- 💾 LocalStorage (for persistence)
+- ⚡ Vite
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/your-username/task-manager.git
+```
+
+Go to the project directory
+
+```bash
+  cd task-manager
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
