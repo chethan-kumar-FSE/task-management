@@ -81,6 +81,7 @@ This app demonstrates real-world frontend engineering concepts like **storage ma
 - 🗂️ Card View & List View toggle  
 - ⚠️ Form validation with error states  
 - 🧠 Clean and scalable component structure
+- ♿ Accessibility ( WCAG Standards )
   
 
 ## Tech Stack
