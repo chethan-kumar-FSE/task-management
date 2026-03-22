@@ -1,10 +1,11 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { taskManager } from "../utils/taskManager";
 import { OPERATION, PARAM_KEYS, PRIORITY, STATUS, VIEW_TYPES } from "../constants/constant";
 
 export const useTasksListing = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const triggerRef = useRef(null);
   const [currentTasks, setCurrentTasks] = useState(taskManager?.getTasks() || []);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedStatus, setSelectedStatus] = useState(STATUS?.ALL);
@@ -48,15 +49,24 @@ export const useTasksListing = () => {
     });
   }, [currentTasks, searchQuery, selectedStatus, selectedPriority]);
 
+  const restoreFocus = () => {
+    const trigger = triggerRef.current;
+    triggerRef.current = null;
+    if (trigger) requestAnimationFrame(() => trigger.focus());
+  };
+
   const handleAddTask = () => {
+    triggerRef.current = document.activeElement;
     setSearchParams({ modal: OPERATION.ADD });
   };
 
   const closeModal = () => {
     setSearchParams({}, { replace: true });
+    restoreFocus();
   };
 
   const handleEditTask = (taskId) => {
+    triggerRef.current = document.activeElement;
     setSearchParams({ modal: OPERATION.EDIT, taskId: taskId });
   };
 
@@ -64,13 +74,16 @@ export const useTasksListing = () => {
     const updatedTasks = taskManager.deleteTask(taskId);
     setCurrentTasks(updatedTasks);
     setSearchParams({}, { replace: true });
+    restoreFocus();
   };
 
   const handleCancel = () => {
     setSearchParams({}, { replace: true });
+    restoreFocus();
   };
 
   const handleDeleteTask = (taskId) => {
+    triggerRef.current = document.activeElement;
     setSearchParams({ modal: OPERATION.DELETE, taskId: taskId });
   };
   const handleSearchQuery = (e) => {

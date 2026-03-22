@@ -4,13 +4,17 @@ const FOCUSABLE_SELECTORS = 'button, [href], input, select, textarea, [tabindex]
 
 const CustomModal = ({ isOpen, onClose, title, children, footer, closeIcon, showCloseIcon = true, closeOnOverlayClick = true }) => {
   const panelRef = useRef(null);
-  const previousFocusRef = useRef(null);
+  const onCloseRef = useRef(onClose);
   const titleId = "modal-title";
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
-        onClose();
+        onCloseRef.current();
         return;
       }
       if (e.key === "Tab") {
@@ -33,7 +37,6 @@ const CustomModal = ({ isOpen, onClose, title, children, footer, closeIcon, show
     };
 
     if (isOpen) {
-      previousFocusRef.current = document.activeElement;
       document.addEventListener("keydown", handleKeyDown);
       requestAnimationFrame(() => {
         const focusable = panelRef.current?.querySelectorAll(FOCUSABLE_SELECTORS);
@@ -44,12 +47,6 @@ const CustomModal = ({ isOpen, onClose, title, children, footer, closeIcon, show
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, onClose]);
-
-  useEffect(() => {
-    if (!isOpen && previousFocusRef.current) {
-      previousFocusRef.current.focus();
-    }
   }, [isOpen]);
 
   if (!isOpen) return null;
@@ -61,7 +58,12 @@ const CustomModal = ({ isOpen, onClose, title, children, footer, closeIcon, show
       aria-modal="true"
       aria-labelledby={title ? titleId : undefined}
     >
-      <div className="absolute inset-0 bg-black/50" aria-hidden="true" onClick={closeOnOverlayClick ? onClose : undefined} style={{ cursor: closeOnOverlayClick ? "pointer" : "default" }} />
+      <div
+        className="absolute inset-0 bg-black/50"
+        aria-hidden="true"
+        onClick={closeOnOverlayClick ? onClose : undefined}
+        style={{ cursor: closeOnOverlayClick ? "pointer" : "default" }}
+      />
       <div ref={panelRef} className="relative z-10 w-full max-w-lg rounded-2xl bg-white dark:bg-gray-800 shadow-lg p-6 animate-slideUp">
         <div className="flex justify-between items-center mb-4">
           {title && (
