@@ -12,7 +12,7 @@ export default defineConfig({
 
   build: {
     target: "esnext",
-    minify: "terser",
+    minify: "oxc",
 
     rollupOptions: {
       output: {
@@ -24,6 +24,6 @@ export default defineConfig({
         },
       },
     },
-    chunkSizeWarningLimit: 100,
+    chunkSizeWarningLimit: 500,
   },
 });
