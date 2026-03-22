@@ -12,7 +12,7 @@ export default defineConfig({
 
   build: {
     target: "esnext",
-    minify: "oxc",
+    minify: "esbuild",
 
     rollupOptions: {
       output: {
