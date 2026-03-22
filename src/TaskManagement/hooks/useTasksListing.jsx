@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { taskManager } from "../utils/taskManager";
-import { OPERATION } from "../constants/constant";
+import { OPERATION, PARAM_KEYS, VIEW_TYPES } from "../constants/constant";
 
 export const useTasksListing = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -9,14 +9,16 @@ export const useTasksListing = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [selectedPriority, setSelectedPriority] = useState("all");
-  const [viewType, setViewType] = useState("grid"); // "grid" | "compact"
+  const [viewType, setViewType] = useState(VIEW_TYPES?.GRID);
 
-  let isEdit = searchParams.get("modal") === OPERATION.EDIT;
+  const modalSearchParam = searchParams.get(PARAM_KEYS.MODAL);
 
-  const isFormModalOpen = searchParams.get("modal") === OPERATION.ADD || searchParams.get("modal") === OPERATION?.EDIT;
-  const isDeleteModalOpen = searchParams.get("modal") === OPERATION.DELETE;
+  let isEdit = searchParams.get(PARAM_KEYS.MODAL) === OPERATION.EDIT;
 
-  const taskId = searchParams.get("taskId");
+  const isFormModalOpen = modalSearchParam === OPERATION.ADD || modalSearchParam === OPERATION?.EDIT;
+  const isDeleteModalOpen = modalSearchParam === OPERATION.DELETE;
+
+  const taskId = searchParams.get(PARAM_KEYS.TASKID);
 
   const taskCounts = useMemo(() => {
     let total = currentTasks.length;

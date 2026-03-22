@@ -59,7 +59,7 @@ class TaskManager {
     }
 
     const tasks = this.getTasks();
-    const updated = tasks.filter((task) => task.taskId !== taskId);
+    const updated = tasks.filter((task) => task?.taskId !== taskId);
 
     this.setTasks(updated);
     return updated;

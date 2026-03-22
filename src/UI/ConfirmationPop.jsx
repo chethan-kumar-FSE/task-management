@@ -1,4 +1,4 @@
-export const ConfirmationPopUp = ({ handleCancel, handleConfirm, confirmationText }) => {
+const ConfirmationPopUp = ({ handleCancel, handleConfirm, confirmationText }) => {
   return (
     <div className="text-center" role="alertdialog" aria-describedby="confirm-text">
       <div aria-hidden="true" className="flex items-center justify-center w-12 h-12 mx-auto rounded-full bg-red-100 mb-4 animate-fadeInUp">
@@ -29,3 +29,5 @@ export const ConfirmationPopUp = ({ handleCancel, handleConfirm, confirmationTex
     </div>
   );
 };
+
+export default ConfirmationPopUp;

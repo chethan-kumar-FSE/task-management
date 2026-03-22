@@ -19,3 +19,8 @@ export const PRIORITY = {
   MEDIUM: "medium",
   HIGH: "high",
 };
+
+export const VIEW_TYPES = {
+  GRID: "grid",
+  LIST: "list",
+};
