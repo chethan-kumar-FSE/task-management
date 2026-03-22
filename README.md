@@ -147,7 +147,7 @@ This project includes accessibility enhancements to ensure a better experience f
 Clone the project
 
 ```bash
-  git clone https://github.com/your-username/task-manager.git
+  git clone git@github.com:chethan-kumar-FSE/task-management.git
 ```
 
 Go to the project directory
