@@ -153,7 +153,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd task-manager
+  cd task-management
 ```
 
 Install dependencies
