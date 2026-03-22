@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { taskManager } from "../utils/taskManager";
 import { taskFields } from "../formFields/taskFields";
+import { STATUS } from "../constants/constant";
 
 const useCreateTasks = ({ isEdit, taskId, setCurrentTasks, onClose }) => {
   const [formFields, setFormFields] = useState(isEdit ? taskManager.getTask(taskId) : {});
@@ -43,7 +44,7 @@ const useCreateTasks = ({ isEdit, taskId, setCurrentTasks, onClose }) => {
       const newTask = {
         taskId: crypto.randomUUID(),
         ...formFields,
-        status: "pending",
+        status: STATUS.PENDING,
       };
       updatedTasks = taskManager.addTask(newTask);
     }

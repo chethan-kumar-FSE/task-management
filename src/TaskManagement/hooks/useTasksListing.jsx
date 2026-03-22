@@ -1,14 +1,14 @@
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { taskManager } from "../utils/taskManager";
-import { OPERATION, PARAM_KEYS, VIEW_TYPES } from "../constants/constant";
+import { OPERATION, PARAM_KEYS, PRIORITY, STATUS, VIEW_TYPES } from "../constants/constant";
 
 export const useTasksListing = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentTasks, setCurrentTasks] = useState(taskManager?.getTasks() || []);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState("all");
-  const [selectedPriority, setSelectedPriority] = useState("all");
+  const [selectedStatus, setSelectedStatus] = useState(STATUS?.ALL);
+  const [selectedPriority, setSelectedPriority] = useState(PRIORITY?.ALL);
   const [viewType, setViewType] = useState(VIEW_TYPES?.GRID);
 
   const modalSearchParam = searchParams.get(PARAM_KEYS.MODAL);
@@ -26,8 +26,8 @@ export const useTasksListing = () => {
     let completed = 0;
 
     for (let task of currentTasks) {
-      if (task?.status === "pending") pending++;
-      if (task?.status === "completed") completed++;
+      if (task?.status === STATUS.PENDING) pending++;
+      if (task?.status === STATUS.COMPLETED) completed++;
     }
 
     return { total, pending, completed };
@@ -40,9 +40,9 @@ export const useTasksListing = () => {
         task?.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         task?.description?.toLowerCase().includes(searchQuery.toLowerCase());
 
-      const matchesStatus = selectedStatus === "all" || task?.status === selectedStatus;
+      const matchesStatus = selectedStatus === STATUS.ALL || task?.status === selectedStatus;
 
-      const matchesPriority = selectedPriority === "all" || task?.priority === selectedPriority;
+      const matchesPriority = selectedPriority === PRIORITY.ALL || task?.priority === selectedPriority;
 
       return matchesSearch && matchesStatus && matchesPriority;
     });

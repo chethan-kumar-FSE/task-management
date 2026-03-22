@@ -1,10 +1,10 @@
-import { PRIORITY } from "../../../constants/constant";
+import { PRIORITY, STATUS } from "../../../constants/constant";
 import React from "react";
 
 export const Task = (props) => {
   const { title, description, priority, date, handleEditTask, handleDeleteTask = () => {}, handleToggleTaskStatus = () => {}, status } = props || {};
 
-  const isCompleted = status === "completed";
+  const isCompleted = status === STATUS.COMPLETED;
 
   return (
     <article

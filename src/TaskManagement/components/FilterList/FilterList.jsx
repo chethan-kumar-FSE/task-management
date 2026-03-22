@@ -1,16 +1,17 @@
 import { CustomFields } from "../../../UI/CustomFormFields";
+import { PRIORITY, STATUS } from "../../constants/constant";
 
 const statusOptions = [
   { label: "All", value: "all" },
-  { label: "Pending", value: "pending" },
-  { label: "Completed", value: "completed" },
+  { label: "Pending", value: STATUS.PENDING },
+  { label: "Completed", value: STATUS.COMPLETED },
 ];
 
 const priorityOptions = [
   { label: "All", value: "all" },
-  { label: "Low", value: "low" },
-  { label: "Medium", value: "medium" },
-  { label: "High", value: "high" },
+  { label: "Low", value: PRIORITY.LOW },
+  { label: "Medium", value: PRIORITY.MEDIUM },
+  { label: "High", value: PRIORITY.HIGH },
 ];
 
 const FilterList = ({ handleSearchQuery, handleStatusFilter, handlePriorityFilter, selectedStatus, selectedPriority, searchQuery }) => {

@@ -5,6 +5,7 @@ export const OPERATION = {
 };
 
 export const STATUS = {
+  ALL: "all",
   PENDING: "pending",
   COMPLETED: "completed",
 };
@@ -15,6 +16,7 @@ export const PARAM_KEYS = {
 };
 
 export const PRIORITY = {
+  ALL: "all",
   LOW: "low",
   MEDIUM: "medium",
   HIGH: "high",
