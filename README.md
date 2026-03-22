@@ -92,6 +92,51 @@ This app demonstrates real-world frontend engineering concepts like **storage ma
 - ⚡ Vite
 
 
+## ♿ Accessibility (a11y)
+
+This project includes accessibility enhancements to ensure a better experience for all users, including those using assistive technologies.
+
+
+### ✅ Implemented Features
+
+#### 🔘 Accessible Theme Toggle
+- Uses `aria-pressed` to indicate toggle state  
+- Dynamic `aria-label` ("Toggle dark mode" / "Toggle light mode")  
+- Screen reader support using `sr-only`  
+
+
+#### 🎯 Keyboard Accessibility
+- All interactive elements are keyboard navigable  
+- Visible focus states using Tailwind (`focus:ring`)  
+- Logical tab order maintained  
+
+
+#### 🧠 Semantic HTML
+- Proper use of `<button>`, `<form>`, `<label>`  
+- Avoided non-semantic clickable elements like `<div>`  
+
+
+#### 🔊 Screen Reader Support
+- Hidden descriptive text using `sr-only`  
+- Clear, action-based labels for better usability  
+
+
+#### ⚠️ Form Accessibility
+- Required fields clearly indicated  
+- Inline error messages for validation  
+- Prevents invalid form submission  
+
+
+#### 🪟 Accessible Modal (Focus Trap)
+
+- Focus is trapped within the modal when open  
+- Prevents users from tabbing outside the modal  
+- Focus returns to the trigger element on close  
+- Supports keyboard navigation (Tab / Shift + Tab)  
+- Escape key closes the modal  
+
+
+
 ## 🚀 Live Demo
 
 🔗 https://task-app-dev.netlify.app
