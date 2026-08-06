@@ -42,7 +42,7 @@ const useCreateTasks = ({ isEdit, taskId, setCurrentTasks, onClose }) => {
       updatedTasks = taskManager.updateTask(taskId, formFields);
     } else {
       const newTask = {
-        taskId: crypto.randomUUID(),
+        taskId: Math.random(),
         ...formFields,
         status: STATUS.PENDING,
       };
