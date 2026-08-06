@@ -1,22 +1,57 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
-
 name: Node.js Package
 
 on:
   push:
     branches:
       - main
-  release:
-    types: [created]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
-      - run: npm run build --if-present
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test --if-present
+
+      - name: Build
+        run: npm run build --if-present
+
+  deploy:
+    needs: build
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Deploy new release
+        run: |
+          RELEASE_DIR="/var/www/releases/$(date +%Y%m%d%H%M%S)"
+          sudo mkdir -p "$RELEASE_DIR"
+          sudo cp -r dist/* "$RELEASE_DIR"/
+          sudo ln -sfn "$RELEASE_DIR" /var/www/current
+
+      - name: Restart nginx
+        run: sudo systemctl restart nginx
+
+      - name: Clean up old releases
+        run: |
+          cd /var/www/releases && ls -t | tail -n +6 | xargs -r sudo rm -rf
