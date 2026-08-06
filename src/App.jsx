@@ -3,6 +3,7 @@ import "./App.css";
 import { TaskManagement } from "./TaskManagement/TaskManagment";
 
 function App() {
+  console.log("App.jsx rendered");
   return (
     <>
       <BrowserRouter>
