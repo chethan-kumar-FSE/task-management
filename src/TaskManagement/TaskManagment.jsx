@@ -8,7 +8,9 @@ import { TasksCount } from "./components/TasksCount/TasksCount";
 import { lazy, Suspense } from "react";
 import { Spinner } from "../UI/Spinner";
 
-const TaskCreateForm = lazy(() => import("./components/TaskCreateForm/TaskCreateForm"));
+const TaskCreateForm = lazy(
+  () => import("./components/TaskCreateForm/TaskCreateForm"),
+);
 const ConfirmationPopUp = lazy(() => import("../UI/ConfirmationPop"));
 const CustomModal = lazy(() => import("../UI/CustomModal"));
 
@@ -47,9 +49,11 @@ export const TaskManagement = () => {
       >
         Skip to main content
       </a>
-
+      <h1 className="sr-only">Task Management Application</h1>
       <header className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 tracking-tight">Task Manager</h1>
+        <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 tracking-tight">
+          Task Manager
+        </h1>
 
         <div className="flex items-center gap-3">
           <ThemeToggler />
@@ -94,16 +98,33 @@ export const TaskManagement = () => {
 
       {isFormModalOpen && (
         <Suspense fallback={<Spinner />}>
-          <CustomModal isOpen={isFormModalOpen} onClose={closeModal} title={isEdit ? "Edit Task" : "Create Task"}>
-            <TaskCreateForm taskId={taskId} isEdit={isEdit} setCurrentTasks={setCurrentTasks} onClose={closeModal} />
+          <CustomModal
+            isOpen={isFormModalOpen}
+            onClose={closeModal}
+            title={isEdit ? "Edit Task" : "Create Task"}
+          >
+            <TaskCreateForm
+              taskId={taskId}
+              isEdit={isEdit}
+              setCurrentTasks={setCurrentTasks}
+              onClose={closeModal}
+            />
           </CustomModal>
         </Suspense>
       )}
 
       {isDeleteModalOpen && (
         <Suspense fallback={<Spinner />}>
-          <CustomModal isOpen={isDeleteModalOpen} onClose={handleCancel} title="Confirm Deletion">
-            <ConfirmationPopUp handleConfirm={handleConfirm} handleCancel={handleCancel} confirmationText="Are you sure you want to delete ?" />
+          <CustomModal
+            isOpen={isDeleteModalOpen}
+            onClose={handleCancel}
+            title="Confirm Deletion"
+          >
+            <ConfirmationPopUp
+              handleConfirm={handleConfirm}
+              handleCancel={handleCancel}
+              confirmationText="Are you sure you want to delete ?"
+            />
           </CustomModal>
         </Suspense>
       )}
