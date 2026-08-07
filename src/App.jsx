@@ -6,6 +6,7 @@ import { useEffect } from "react";
 function App() {
   console.log("App.jsx renderedvasdasd");
   console.log("done");
+  console.log("done");
 
   useEffect(() => {
     const fetchCall = async () => {
