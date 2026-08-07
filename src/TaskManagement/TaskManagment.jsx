@@ -49,7 +49,7 @@ export const TaskManagement = () => {
       >
         Skip to main content
       </a>
-      <h1 className="dark:text-gray-100">Task Management app-in</h1>
+      <h1 className="dark:text-gray-100">Task Management app-in-loader</h1>
       <header className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 tracking-tight">
           Task Manager
