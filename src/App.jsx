@@ -4,6 +4,7 @@ import { TaskManagement } from "./TaskManagement/TaskManagment";
 
 function App() {
   console.log("App.jsx renderedvasdasd");
+  console.log("done")
   return (
     <>
       <BrowserRouter>
